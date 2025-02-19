@@ -1,8 +1,6 @@
-import React from "react";
-
 export default function Loading() {
   return (
-    <div className="flex  bg-gray-400/40 fixed inset-0 justify-center items-center">
+    <div className="flex bg-gray-400/40 absolute inset-0 justify-center items-center">
       <svg
         aria-hidden="true"
         className="w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
