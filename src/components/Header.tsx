@@ -1,7 +1,8 @@
 import { header } from "../types/Header";
 import { Link } from "react-router";
 import { useLocation } from "react-router";
-
+import { useAuth } from "./useContext/AuthContext";
+import Myinfo from "./MyInfo/Myinfo";
 export default function Header() {
   const headerData: header[] = [
     { name: "products", path: "/products" },
@@ -12,6 +13,7 @@ export default function Header() {
   return (
     <div className="max-w-full container  mx-auto shadow-md py-3 px-10 capitalize">
       <div className="md:flex gap-x-8 items-center justify-end hidden ">
+        <Myinfo></Myinfo>
         {headerData.map((item) => {
           return (
             <Link

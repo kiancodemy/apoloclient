@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
+import { Hadle } from "./middleware/LoginAgain";
 import Loading from "./components/loading/Loading";
 
 const Home = lazy(() => import("./components/Home"));
@@ -10,6 +11,7 @@ const ProductId = lazy(() => import("./components/ProductId"));
 import Notfound from "./components/Notfound/Notfound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Checkauth } from "./middleware/CheckAuth";
 export default function App() {
   return (
     <div className="flex justify-between overflow-hidden p-4 flex-col min-h-screen items-center">
@@ -18,9 +20,15 @@ export default function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="signin" element={<Signin />} />
-            <Route path="products" element={<Products />} />
+            <Route path="" element={<Hadle />}>
+              <Route path="signup" element={<Signup />} />
+              <Route path="signin" element={<Signin />} />
+            </Route>
+
+            <Route path="" element={<Checkauth />}>
+              <Route path="products" element={<Products />} />
+            </Route>
+
             <Route path="productid/:id" element={<ProductId />} />
           </Route>
 
