@@ -1,25 +1,25 @@
 import { Outlet, useNavigate } from "react-router";
 import { useEffect } from "react";
-import Loading from "../components/loading/Loading";
+
 import { useAuth } from "../components/useContext/AuthContext";
 import { useQuery } from "@apollo/client";
 import { checkAuth } from "../hook/singup";
 import { useLocation } from "react-router";
-import { showToast } from "../utils/Toastify";
+
 export const Checkauth = () => {
-  const { loading: loadings, error } = useQuery(checkAuth, {
+  const { error } = useQuery(checkAuth, {
     fetchPolicy: "network-only",
   });
-  const { setUser } = useAuth();
-  const location = useLocation();
+  const { user, setUser } = useAuth();
+
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   useEffect(() => {
-    if (error) {
-      navigate("/signin");
+    if (error || !user) {
+      navigate(`/signin?search=${pathname}`);
       setUser(null);
-      showToast("please login", "error");
     }
-  }, [error, location.pathname, setUser, navigate]);
+  }, [error, user]);
 
   return <Outlet />;
 };

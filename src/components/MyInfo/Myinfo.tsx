@@ -8,15 +8,15 @@ import { useEffect } from "react";
 export default function MyInfo() {
   const { user, setUser } = useAuth();
 
-  const { logout, data, error, loading } = uselogout();
+  const { logout, data, error } = uselogout();
 
   useEffect(() => {
     if (error) {
       showToast(error.message, "error");
     }
     if (data) {
-      showToast("Logout Sucessfully", "success");
       setUser(null);
+      showToast("Logout Sucessfully", "success");
     }
   }, [error, data]);
   const navigate = useNavigate();

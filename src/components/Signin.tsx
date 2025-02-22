@@ -1,5 +1,6 @@
-import { Link } from "react-router";
+import { useSearchParams } from "react-router";
 import { uselogin } from "../hook/singup";
+import { Link } from "react-router";
 import { useEffect, useRef } from "react";
 import { showToast } from "../utils/Toastify";
 import { useAuth } from "./useContext/AuthContext";
@@ -7,9 +8,11 @@ import { useNavigate } from "react-router";
 export default function Signin() {
   const { handlelogin, data, loading, error } = uselogin();
   const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
 
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
+  const search = searchParams.get("search") || false;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -28,7 +31,11 @@ export default function Signin() {
       setUser(data.login);
       showToast("sucessfully loged in", "success");
       setTimeout(() => {
-        navigate("/");
+        if (search) {
+          navigate(`${search}`);
+        } else {
+          navigate("/");
+        }
       }, 500);
     }
   }, [error, data]);
