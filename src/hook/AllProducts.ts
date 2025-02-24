@@ -11,7 +11,6 @@ export const GET_PRODUCTS = gql`
       filter: { price: $price, quantity: $quantity, page: $page, limit: $limit }
     ) {
       length
-      perpage
 
       products {
         id

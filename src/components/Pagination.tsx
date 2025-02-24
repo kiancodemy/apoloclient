@@ -9,7 +9,7 @@ export default function Pagination({ quantity }: quantity) {
     searchParams.set("page", `${item}`);
     setsearchParams(searchParams);
   };
-  const active = Number(searchParams.get("page"));
+  const active = Number(searchParams.get("page")) || 1;
   return (
     <div className="flex gap-x-3 justify-center">
       {pages.map((item: any) => {

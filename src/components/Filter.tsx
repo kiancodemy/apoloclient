@@ -1,21 +1,23 @@
 import { useSearchParams } from "react-router";
-import { useState } from "react";
-export default function Filter({ show }: { show: number }) {
+
+import { Link } from "react-router";
+function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const numberOfPages = [3, 6, 9];
 
   const handlePrice = (e: any) => {
     searchParams.set("price", e.target.value);
     setSearchParams(searchParams);
   };
   const handlepage = (e: any) => {
-    searchParams.set("limit", `${e.target.value}`);
+    searchParams.set("limit", e.target.value);
+
     setSearchParams(searchParams);
   };
 
-  const numberOfPages = Array.from({ length: show }, (_, index) => index + 1);
-
   return (
-    <div className="p-5 flex items-start justify-between">
+    <div className="p-5 flex flex-col md:flex-row gap-y-3 items-center justify-between">
       <div className="flex capitalize p-2 border-2  border-gray-400 rounded-md gap-y-2">
         <label>
           <span>price:</span>
@@ -27,6 +29,11 @@ export default function Filter({ show }: { show: number }) {
             <option value="1">low to hight</option>
           </select>
         </label>
+      </div>
+      <div>
+        <button className="py-2 capitalize px-8 rounded-md bg-blue-500 text-white">
+          <Link to={"/newproduct"}>create product</Link>
+        </button>
       </div>
       <div className="capitalize p-2 border-2  border-gray-400 rounded-md gap-y-2">
         <label>
@@ -48,3 +55,4 @@ export default function Filter({ show }: { show: number }) {
     </div>
   );
 }
+export default Filter;

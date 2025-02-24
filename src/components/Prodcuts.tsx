@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import Pagination from "./Pagination";
 import { useSearchParams } from "react-router";
 import Filter from "./Filter";
+
 export default function Prodcuts() {
   const [searchParams] = useSearchParams();
   const price = searchParams.get("price");
@@ -15,24 +16,21 @@ export default function Prodcuts() {
   const { loading, data, error } = useQuery(GET_PRODUCTS, {
     variables: {
       price,
-
       page,
       limit,
     },
   });
 
   return (
-    <div className="container max-w-full grow relative">
+    <div className="container  max-w-full flex flex-col grow relative">
       {error ? (
         <Notfound></Notfound>
       ) : loading ? (
         <Loading></Loading>
       ) : (
-        <div>
-          <Filter show={data.Products.perpage}></Filter>
-
+        <div className="flex flex-col grow justify-between">
           <div
-            className="grid grid-cols-1 px-5  md:py-20 py-10 md:grid-cols-3 
+            className="grid grid-cols-1 px-5 md:py-20 py-10 md:grid-cols-3 
          gap-4"
           >
             {data.Products.products.map((item: any) => {

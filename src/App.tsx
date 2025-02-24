@@ -4,9 +4,11 @@ import { Hadle } from "./middleware/LoginAgain";
 import Loading from "./components/loading/Loading";
 
 const Home = lazy(() => import("./components/Home"));
+
+const Newproduct = lazy(() => import("./components/NewProduct/Newproduct"));
 const Signup = lazy(() => import("./components/Signup"));
 const Signin = lazy(() => import("./components/Signin"));
-const Products = lazy(() => import("./components/Prodcuts"));
+const Products = lazy(() => import("./components/All"));
 const ProductId = lazy(() => import("./components/ProductId"));
 import Notfound from "./components/Notfound/Notfound";
 import Header from "./components/Header";
@@ -26,8 +28,9 @@ export default function App() {
             </Route>
 
             <Route path="" element={<Checkauth />}>
-              <Route path="products" element={<Products />} />
+              <Route path="newproduct" element={<Newproduct />} />
             </Route>
+            <Route path="products" element={<Products />} />
 
             <Route path="productid/:id" element={<ProductId />} />
           </Route>

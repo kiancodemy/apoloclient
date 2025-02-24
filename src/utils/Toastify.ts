@@ -3,7 +3,7 @@ import { Slide } from "react-toastify";
 export const showToast = (message: string, type: "success" | "error") => {
   if (type === "success") {
     toast.success(message, {
-      position: "top-right",
+      position: "top-left",
       autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
@@ -15,7 +15,7 @@ export const showToast = (message: string, type: "success" | "error") => {
     });
   } else if (type === "error") {
     toast.error(message, {
-      position: "top-right",
+      position: "top-left",
       autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
