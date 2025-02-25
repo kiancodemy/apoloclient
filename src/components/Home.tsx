@@ -1,10 +1,10 @@
 import { TypeAnimation } from "react-type-animation";
-
+import Imgcarousel from "./Imagecarousel/Imgcarousel";
 export default function Home() {
   return (
     <div className="py-10 grow  container shadow-md mt-20  md:py-20">
-      <div className=" flex flex-col md:flex-row p-4">
-        <div className="basis-1/2">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-10 md:flex-row p-8">
+        <div className="h-[150px]">
           <TypeAnimation
             sequence={[
               "this is for performance testing of ApoloServer and  ApoloClient",
@@ -20,7 +20,7 @@ export default function Home() {
           />
         </div>
 
-        <div className=" self-start basis-1/2">d</div>
+        <Imgcarousel></Imgcarousel>
       </div>
     </div>
   );
